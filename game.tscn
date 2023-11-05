@@ -30,15 +30,15 @@ shader_parameter/chrome_exponent = 4.0
 frequency = 0.136
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_gyhpt"]
-width = 1240
+width = 250
 height = 720
 seamless = true
 noise = SubResource("FastNoiseLite_sb70d")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1efyy"]
 shader = ExtResource("4_cca08")
-shader_parameter/grain = 0.2
-shader_parameter/warp = 0.535
+shader_parameter/grain = 0.15
+shader_parameter/warp = 0.75
 shader_parameter/grain_noise = SubResource("NoiseTexture2D_gyhpt")
 
 [sub_resource type="Animation" id="Animation_eodob"]
@@ -140,6 +140,7 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="RecLabel" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0.639216)
 offset_left = 73.0
 offset_top = 57.0
 offset_right = 191.0
@@ -154,12 +155,23 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_h4ax5")
 
 [node name="ZoomLabel" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0.639216)
 offset_left = 80.0
-offset_top = 906.0
+offset_top = 918.0
 offset_right = 817.0
-offset_bottom = 997.0
+offset_bottom = 1009.0
 theme_override_font_sizes/font_size = 64
 text = "100%"
+
+[node name="DateLabel" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0.639216)
+offset_left = 1090.0
+offset_top = 61.0
+offset_right = 1827.0
+offset_bottom = 152.0
+theme_override_font_sizes/font_size = 64
+text = "Date"
+horizontal_alignment = 2
 
 [node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 rect = Rect2(0, 0, 1940, 1080)

@@ -18,7 +18,7 @@ void fragment() {
 	float mask = 1.0 - float(uv.x < .0 ||uv.x > 1.0 || uv.y < .0 || uv.y > 1.0);
 	
 	vec4 pixel = texture(SCREEN, uv);
-	pixel.rgb += texture(TEXTURE, uv).rgb * texture(TEXTURE, uv).a;
+	pixel.rgb += texture(TEXTURE, uv).rgb * texture(TEXTURE, uv).a * .5;
 	
 	COLOR = vec4(pixel.rgb * mask, pixel.a + (1.0 - mask));
 	

@@ -22,6 +22,8 @@ var taking_photo = false
 
 var timer := .0
 
+var photos := 0
+
 var colors = [
 	Color("#f77622"),
 	Color("#63c74d"),
@@ -35,6 +37,8 @@ var colors = [
 @onready var mandelbrot := $Mandelbrot
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+	
 	randomize()
 	
 	color = colors.pick_random()
@@ -45,8 +49,12 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	var time = Time.get_date_dict_from_system()
+	$DateLabel.text = str(time["day"]) +"."+ str(time["month"]) +"."+ str(time["year"])
+	
 	if Input.is_action_just_pressed("photo") and !taking_photo:
 		taking_photo = true
+		photos += 1
 		
 		$SnapPhotoSound.play()
 		
@@ -54,12 +62,13 @@ func _process(delta: float) -> void:
 		$RecLabel.hide()
 		$ZoomLabel.hide()
 		$BackBufferCopy/CameraEffect.hide()
+		$DateLabel.hide()
 		
 		await(get_tree().create_timer(.1).timeout)
 		
 		var texture = get_viewport().get_texture()
 		var image = texture.get_image()
-		image.save_png("user://Mandelbrotov Skup Slike/thing.png")
+		image.save_png("user://Mandelbrotov Skup Slike/Slika_" + str(photos) + ".png")
 		
 		$Picture/Sprite.texture = ImageTexture.create_from_image(image)
 		$Picture.show()
@@ -69,6 +78,7 @@ func _process(delta: float) -> void:
 		$RecLabel.show()
 		$ZoomLabel.show()
 		$BackBufferCopy/CameraEffect.show()
+		$DateLabel.show()
 	
 	var movement = Input.get_vector("left", "right", "up", "down").normalized()
 	
