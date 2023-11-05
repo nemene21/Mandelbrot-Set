@@ -18,6 +18,8 @@ var color_anim := .0
 var color = null
 var next_color = null
 
+var taking_photo = false
+
 var timer := .0
 
 var colors = [
@@ -43,8 +45,30 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("photo"):
+	if Input.is_action_just_pressed("photo") and !taking_photo:
+		taking_photo = true
+		
 		$SnapPhotoSound.play()
+		
+		$PostProcessing.hide()
+		$RecLabel.hide()
+		$ZoomLabel.hide()
+		$BackBufferCopy/CameraEffect.hide()
+		
+		await(get_tree().create_timer(.1).timeout)
+		
+		var texture = get_viewport().get_texture()
+		var image = texture.get_image()
+		image.save_png("user://Mandelbrotov Skup Slike/thing.png")
+		
+		$Picture/Sprite.texture = ImageTexture.create_from_image(image)
+		$Picture.show()
+		$PictureAnimation.play("picture")
+		
+		$PostProcessing.show()
+		$RecLabel.show()
+		$ZoomLabel.show()
+		$BackBufferCopy/CameraEffect.show()
 	
 	var movement = Input.get_vector("left", "right", "up", "down").normalized()
 	
@@ -91,3 +115,8 @@ func zooming(direction: int) -> void:
 	
 	direction = -direction
 	zoom_dest += 0.2 * zoom_dest * direction
+
+
+func _on_picture_animation_animation_finished(anim_name: StringName) -> void:
+	$Picture.hide()
+	taking_photo = false

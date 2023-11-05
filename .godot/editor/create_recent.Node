@@ -1,5 +1,7 @@
+AnimationPlayer
+ColorRect
+Sprite2D
 AudioStreamPlayer
 Label
 BackBufferCopy
 TextureRect
-ColorRect
