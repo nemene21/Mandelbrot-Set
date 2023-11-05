@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://lriltbtalt7v"]
+[gd_scene load_steps=19 format=3 uid="uid://lriltbtalt7v"]
 
 [ext_resource type="Shader" path="res://mandelbrot.gdshader" id="1_fqump"]
 [ext_resource type="Script" path="res://game.gd" id="1_pvtbs"]
 [ext_resource type="Texture2D" uid="uid://dsruq3n4dtu7p" path="res://camera_borders.svg" id="3_51b3f"]
 [ext_resource type="Shader" path="res://CameraOverlay.gdshader" id="4_cca08"]
 [ext_resource type="Shader" path="res://post_processing.gdshader" id="4_qlu0w"]
+[ext_resource type="Texture2D" uid="uid://cpeelvm1ilf3r" path="res://crosshair.svg" id="4_uvt31"]
 [ext_resource type="Texture2D" uid="uid://dg8apgk287hg7" path="res://rec_circle.svg" id="6_h4ax5"]
 [ext_resource type="AudioStream" uid="uid://b450ltbltxetx" path="res://camera_zoom.wav" id="7_a8lqf"]
 [ext_resource type="AudioStream" uid="uid://dm3oihyvm0q4r" path="res://camera.wav" id="8_65ogw"]
@@ -138,6 +139,13 @@ offset_bottom = 1080.0
 material = SubResource("ShaderMaterial_c3sv2")
 offset_right = 1920.0
 offset_bottom = 1080.0
+
+[node name="Crosshair" type="Sprite2D" parent="PostProcessing"]
+modulate = Color(1, 1, 1, 0.545098)
+show_behind_parent = true
+position = Vector2(960, 540)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("4_uvt31")
 
 [node name="RecLabel" type="Label" parent="."]
 self_modulate = Color(1, 1, 1, 0.639216)
