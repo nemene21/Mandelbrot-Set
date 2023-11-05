@@ -4,9 +4,11 @@ var velocity: Vector2 = Vector2.ZERO
 var speed := 0.1;
 
 var pos  := Vector2.ZERO
-var zoom := 1.0
+var zoom := 8.0
 
-var zoom_dest := 1.0
+var fake_zoom = 100
+
+var zoom_dest := 8.0
 var pos_dest  := Vector2.ZERO
 
 
@@ -31,6 +33,8 @@ var colors = [
 @onready var mandelbrot := $Mandelbrot
 
 func _ready() -> void:
+	randomize()
+	
 	color = colors.pick_random()
 	next_color = colors.pick_random()
 	
@@ -39,11 +43,14 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("photo"):
+		$SnapPhotoSound.play()
+	
 	var movement = Input.get_vector("left", "right", "up", "down").normalized()
 	
 	timer += delta
 	$RecLabel/RecCircle.visible = sin(timer * 8.0) > .0
-	$ZoomLabel.text = str(int((1 - zoom*zoom) * 100)) + "%"
+	$ZoomLabel.text = str(fake_zoom) + "%"
 	
 	pos_dest += movement * delta * zoom
 	
@@ -53,8 +60,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("scroll_down"):
 		zooming(-1)
 	
-	pos = lerp(pos, pos_dest, 0.1)
-	zoom = lerp(zoom, zoom_dest, 0.1)
+	pos = lerp(pos, pos_dest, 0.2)
+	zoom = lerp(zoom, zoom_dest, 0.2)
 	
 	mandelbrot.material.set_shader_parameter("offset", pos)
 	mandelbrot.material.set_shader_parameter("zoom", zoom)
@@ -76,5 +83,11 @@ func animate_color(delta: float) -> void:
 			next_color = colors.pick_random()
 
 func zooming(direction: int) -> void:
+	if !$CameraZoomSound.playing:
+		$CameraZoomSound.pitch_scale = 1.0 + randf_range(-.1, .1) + direction * .2
+		$CameraZoomSound.play()
+	
+	fake_zoom += 25 * direction
+	
 	direction = -direction
-	zoom_dest += 0.1 * zoom_dest * direction
+	zoom_dest += 0.2 * zoom_dest * direction

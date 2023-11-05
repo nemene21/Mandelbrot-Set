@@ -17,17 +17,17 @@ void fragment() {
 	vec2 pos = ((UV + offset / zoom) * 2.0 - 1.0) * zoom;
 	pos.x *= ratio;
 	
-	float a = pos.x;
-	float b = pos.y;
+	highp float a = pos.x;
+	highp float b = pos.y;
 	
-	float copy_a = a;
-	float copy_b = b;
+	highp float copy_a = a;
+	highp float copy_b = b;
 	
 	float n = .0;
 	
 	while (n < max_iterations) {
-		float A = a*a - b*b;
-		float B = 2.0 * a*b;
+		highp float A = a*a - b*b;
+		highp float B = 2.0 * a*b;
 		a = copy_a + A;
 		b = copy_b + B;
 		
@@ -38,6 +38,10 @@ void fragment() {
 	}
 	
 	float anim = pow(float(n / max_iterations), exponent);
+	if (n >= max_iterations * .9) {
+		n -= max_iterations * .9;
+		anim = 1.0 - n / (max_iterations * .9);
+	}
 
 	COLOR = mix(color1, color2, anim);
 }

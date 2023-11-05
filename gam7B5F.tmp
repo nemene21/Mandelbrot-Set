@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://lriltbtalt7v"]
+[gd_scene load_steps=13 format=3 uid="uid://lriltbtalt7v"]
 
 [ext_resource type="Shader" path="res://mandelbrot.gdshader" id="1_fqump"]
 [ext_resource type="Script" path="res://game.gd" id="1_pvtbs"]
@@ -7,7 +7,6 @@
 [ext_resource type="Shader" path="res://post_processing.gdshader" id="4_qlu0w"]
 [ext_resource type="Texture2D" uid="uid://dg8apgk287hg7" path="res://rec_circle.svg" id="6_h4ax5"]
 [ext_resource type="AudioStream" uid="uid://b450ltbltxetx" path="res://camera_zoom.wav" id="7_a8lqf"]
-[ext_resource type="AudioStream" uid="uid://dm3oihyvm0q4r" path="res://camera.wav" id="8_65ogw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i230o"]
 shader = ExtResource("1_fqump")
@@ -18,12 +17,12 @@ shader_parameter/ratio = 1.72
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/color1 = Color(0.027451, 0.137255, 0.145098, 1)
 shader_parameter/color2 = Color(0.172549, 0.909804, 0.960784, 1)
-shader_parameter/exponent = 0.85
+shader_parameter/exponent = 0.7
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c3sv2"]
 shader = ExtResource("4_qlu0w")
 shader_parameter/chromatic_abberation = 0.008
-shader_parameter/chrome_exponent = 4.0
+shader_parameter/chrome_exponent = 3.0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_sb70d"]
 frequency = 0.136
@@ -63,16 +62,15 @@ theme_override_font_sizes/font_size = 64
 text = "REC"
 
 [node name="RecCircle" type="Sprite2D" parent="RecLabel"]
-modulate = Color(1, 0, 0, 1)
 position = Vector2(170, 45)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_h4ax5")
 
 [node name="ZoomLabel" type="Label" parent="."]
-offset_left = 80.0
-offset_top = 906.0
-offset_right = 817.0
-offset_bottom = 997.0
+offset_left = 70.0
+offset_top = 573.0
+offset_right = 807.0
+offset_bottom = 664.0
 theme_override_font_sizes/font_size = 64
 text = "100%"
 
@@ -88,6 +86,3 @@ texture = ExtResource("3_51b3f")
 
 [node name="CameraZoomSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_a8lqf")
-
-[node name="SnapPhotoSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_65ogw")
