@@ -1,7 +1,10 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1699198410
-camera_borders.svg::CompressedTexture2D::8459000062999378631::1699198410::1699198410::1::::<><>::
-game.gd::GDScript::-1::1699197728::0::1::::<>Node2D<>::
-game.tscn::PackedScene::807678081864643609::1699197909::0::1::::<><>::res://mandelbrot.gdshader<>res://game.gd
+::res://::1699200421
+camera_borders.svg::CompressedTexture2D::8459000062999378631::1699198576::1699198545::1::::<><>::
+game.gd::GDScript::-1::1699199740::0::1::::<>Node2D<>::
+game.tscn::PackedScene::807678081864643609::1699200387::0::1::::<><>::res://mandelbrot.gdshader<>res://game.gd<>uid://dsruq3n4dtu7p::::res://camera_borders.svg<>res://CameraOverlay.gdshader<>res://post_processing.gdshader
 icon.svg::CompressedTexture2D::7867527816798760769::1699192092::1699192108::1::::<><>::
-mandelbrot.gdshader::Shader::-1::1699197909::0::1::::<><>::
+mandelbrot.gdshader::Shader::-1::1699200387::0::1::::<><>::
+post_processing.gdshader::Shader::-1::1699200387::0::1::::<><>::
+CameraOverlay.gdshader::Shader::-1::1699200387::0::1::::<><>::
+rec_circle.svg::CompressedTexture2D::7648546697560310136::1699200421::1699200421::1::::<><>::

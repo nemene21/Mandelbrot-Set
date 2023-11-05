@@ -1,3 +1,5 @@
 res://game.tscn
 res://mandelbrot.gdshader
 res://game.gd
+res://post_processing.gdshader
+res://CameraOverlay.gdshader
