@@ -1,0 +1,7 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1699198410
+camera_borders.svg::CompressedTexture2D::8459000062999378631::1699198410::1699198410::1::::<><>::
+game.gd::GDScript::-1::1699197728::0::1::::<>Node2D<>::
+game.tscn::PackedScene::807678081864643609::1699197909::0::1::::<><>::res://mandelbrot.gdshader<>res://game.gd
+icon.svg::CompressedTexture2D::7867527816798760769::1699192092::1699192108::1::::<><>::
+mandelbrot.gdshader::Shader::-1::1699197909::0::1::::<><>::

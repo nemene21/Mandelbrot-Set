@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://lriltbtalt7v"]
+
+[ext_resource type="Shader" path="res://mandelbrot.gdshader" id="1_fqump"]
+[ext_resource type="Script" path="res://game.gd" id="1_pvtbs"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i230o"]
+shader = ExtResource("1_fqump")
+shader_parameter/zoom = 1.0
+shader_parameter/boundary = 16.0
+shader_parameter/max_iterations = 500.0
+shader_parameter/ratio = 1.72
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/color1 = Color(0, 0, 0, 1)
+shader_parameter/color2 = Color(1, 1, 1, 1)
+shader_parameter/exponent = 0.65
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_pvtbs")
+
+[node name="Mandelbrot" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_i230o")
+offset_right = 1240.0
+offset_bottom = 720.0
