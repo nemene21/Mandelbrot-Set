@@ -4,12 +4,14 @@ var velocity: Vector2 = Vector2.ZERO
 var speed := 0.1;
 
 var pos  := Vector2.ZERO
-var zoom := 8.0
+var zoom := 12.0
 
 var fake_zoom = 100
 
-var zoom_dest := 8.0
+var zoom_dest := 12.0
 var pos_dest  := Vector2.ZERO
+
+var picture_ratio = 5.0
 
 
 @export var color_anim_speed := .05
@@ -64,6 +66,10 @@ func _process(delta: float) -> void:
 		$BackBufferCopy/CameraEffect.hide()
 		$DateLabel.hide()
 		
+		$Mandelbrot.material.set_shader_parameter("exponent", .5)
+		$Mandelbrot.material.set_shader_parameter("samples", $Mandelbrot.material.get_shader_parameter("samples") * picture_ratio)
+		$Mandelbrot.material.set_shader_parameter("max_iterations", $Mandelbrot.material.get_shader_parameter("max_iterations") * picture_ratio)
+		
 		await(get_tree().create_timer(.1).timeout)
 		
 		var texture = get_viewport().get_texture()
@@ -73,6 +79,10 @@ func _process(delta: float) -> void:
 		$Picture/Sprite.texture = ImageTexture.create_from_image(image)
 		$Picture.show()
 		$PictureAnimation.play("picture")
+		
+		$Mandelbrot.material.set_shader_parameter("exponent", .75)
+		$Mandelbrot.material.set_shader_parameter("samples", $Mandelbrot.material.get_shader_parameter("samples") / picture_ratio)
+		$Mandelbrot.material.set_shader_parameter("max_iterations", $Mandelbrot.material.get_shader_parameter("max_iterations") / picture_ratio)
 		
 		$PostProcessing.show()
 		$RecLabel.show()

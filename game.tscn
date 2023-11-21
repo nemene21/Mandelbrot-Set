@@ -14,13 +14,14 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_i230o"]
 shader = ExtResource("1_fqump")
 shader_parameter/zoom = 1.0
-shader_parameter/boundary = 16.0
-shader_parameter/max_iterations = 256.0
+shader_parameter/boundary = 8.0
+shader_parameter/max_iterations = 600.0
+shader_parameter/samples = 3
 shader_parameter/ratio = 1.72
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/color1 = Color(0.027451, 0.137255, 0.145098, 1)
 shader_parameter/color2 = Color(0.172549, 0.909804, 0.960784, 1)
-shader_parameter/exponent = 0.85
+shader_parameter/exponent = 0.75
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c3sv2"]
 shader = ExtResource("4_qlu0w")
@@ -41,45 +42,6 @@ shader = ExtResource("4_cca08")
 shader_parameter/grain = 0.15
 shader_parameter/warp = 0.75
 shader_parameter/grain_noise = SubResource("NoiseTexture2D_gyhpt")
-
-[sub_resource type="Animation" id="Animation_eodob"]
-resource_name = "picture"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Picture:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.333, 0.333)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Picture:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.9),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [0.0, 1.5708]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Picture:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.7, 1),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector2(-130, -130), Vector2(-130, 800)]
-}
 
 [sub_resource type="Animation" id="Animation_k2a4i"]
 length = 0.001
@@ -120,6 +82,45 @@ tracks/2/keys = {
 "values": [Vector2(-130, -130)]
 }
 
+[sub_resource type="Animation" id="Animation_eodob"]
+resource_name = "picture"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Picture:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.333, 0.333)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Picture:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.9),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [0.0, 1.5708]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Picture:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.7, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector2(-130, -130), Vector2(-130, 800)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e16g7"]
 _data = {
 "RESET": SubResource("Animation_k2a4i"),
@@ -144,7 +145,7 @@ offset_bottom = 1080.0
 modulate = Color(1, 1, 1, 0.545098)
 show_behind_parent = true
 position = Vector2(960, 540)
-scale = Vector2(0.33, 0.33)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_uvt31")
 
 [node name="RecLabel" type="Label" parent="."]
